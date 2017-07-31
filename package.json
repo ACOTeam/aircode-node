@@ -1,0 +1,22 @@
+{
+  "name": "airapi-scaffold",
+  "version": "1.0.0",
+  "description": "scaffold",
+  "main": "scaffold.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "aircode-node": "index.js"
+  },
+  "keywords": [
+    "airapi",
+    "scaffold"
+  ],
+  "author": "VinliCheung",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "nunjucks": "^3.0.1"
+  }
+}
