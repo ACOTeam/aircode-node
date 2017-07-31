@@ -29,7 +29,7 @@ $ nodemon src/server.js
 
 #### Issues
 
-You can report issues in [here]()
+You can report issues in [here](https://github.com/ACOTeam/aircode-node/issues)
 
 #### TODO List
 

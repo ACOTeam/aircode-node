@@ -2,18 +2,23 @@
   "name": "airapi-scaffold",
   "version": "1.0.0",
   "description": "scaffold",
-  "main": "scaffold.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "aircode-node": "index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ACOTeam/aircode-node"
+  },
   "keywords": [
     "airapi",
-    "scaffold"
+    "scaffold",
+    "aircode-node"
   ],
-  "author": "VinliCheung",
+  "author": "airapi",
   "license": "ISC",
   "dependencies": {
     "commander": "^2.11.0",
