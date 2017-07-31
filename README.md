@@ -24,6 +24,7 @@ $ make run
 - Node monitor
 ```shell
 $ cd hello
+$ npm i
 $ nodemon src/server.js
 ```
 
