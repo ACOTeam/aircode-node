@@ -34,7 +34,6 @@
   "devDependencies": {
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
-    "nunjucks": "^3.0.1",
     "nyc": "^11.0.3",
     "pre-commit": "^1.2.2"
   }

@@ -25,7 +25,7 @@ $ make run
 ```shell
 $ cd hello
 $ npm i
-$ nodemon src/server.js
+$ npm run dev
 ```
 
 #### Issues
@@ -37,5 +37,4 @@ You can report issues in [here](https://github.com/ACOTeam/aircode-node/issues)
 - add command
 	- aircode-node generate model field:type
 	- aircode-node generate route post [get | put | delete]
-- refactor generateFile.js
 - enhance structure
