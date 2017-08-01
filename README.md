@@ -35,7 +35,7 @@ You can report issues in [here](https://github.com/ACOTeam/aircode-node/issues)
 #### TODO List
 
 - add command
-	- airapi-node generate model field:type
-	- airapi-node generate route post [get | put | delete]
+	- aircode-node generate model field:type
+	- aircode-node generate route post [get | put | delete]
 - refactor generateFile.js
 - enhance structure
