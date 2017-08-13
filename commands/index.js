@@ -3,7 +3,7 @@ const before = require('./before')
 const core = require('./core')
 
 module.exports = {
-	before,
-	genBaseFile,
-	core
+  before,
+  genBaseFile,
+  core
 }

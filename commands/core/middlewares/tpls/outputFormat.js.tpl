@@ -1,11 +1,11 @@
 module.exports = () => {
-  return (ctx, next) => {
+  return async(ctx, next) => {
     ctx.apiSuccess = (data, exData = {}) => {
       ctx.body = Object.assign({
         status: 'OK',
         code: 200,
-        data: data,
-        server_time: Date.now()
+        server_time: Date.now(),
+        data: data
       }, exData)
     }
 
@@ -18,6 +18,6 @@ module.exports = () => {
         server_time: Date.now()
       }
     }
-    next()
+    await next()
   }
 }

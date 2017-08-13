@@ -1,6 +1,6 @@
-router.get('/{{resource}}/:id', Validate({
+router.get('/{{resource}}s/:_id', validator({
   params: Joi.object().keys({
-    id: Joi.number().required()
+    _id: Joi.objectId().required()
   })
-}), require('./{{resource}}/get'))
+}), require('./{{resource}}s/get'))
 

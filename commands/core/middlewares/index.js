@@ -1,4 +1,4 @@
 module.exports = {
-	writeOutputFormat: require('./writeOutputFormat'),
-	writeValidate: require('./writeValidate')
+  writeOutputFormat: require('./writeOutputFormat'),
+  writeErrorHandler: require('./writeErrorHandler')
 }

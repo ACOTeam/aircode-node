@@ -1,16 +1,16 @@
 const fs = require('fs')
 
 class Utils {
-  static checkFile(file) {
+  static checkFile (file) {
     const isExist = fs.existsSync(file)
     if (isExist) console.log(`${file} is exist.`)
-    return isExist;
+    return isExist
   }
 
-  static checkFieldType(fieldType) {
+  static checkFieldType (fieldType) {
     const isValid = /^\w+:\w+$/.test(fieldType)
     return isValid
   }
 }
 
-module.exports = Utils;
+module.exports = Utils
