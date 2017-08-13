@@ -1,4 +1,4 @@
 module.exports = {
-	writeDb: require('./writeDb'),
-	writeLog: require('./writeLog')
+  writeDb: require('./writeDb'),
+  writeLog: require('./writeLog')
 }
