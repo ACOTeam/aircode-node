@@ -4,6 +4,7 @@ var program = require('commander')
 var fs = require('fs')
 var utils = require('./utils')
 var commands = require('./commands')
+var path = require('path')
 
 program.version('0.1.0')
 if (!process.argv.slice(2).length) {
@@ -31,7 +32,7 @@ program
   .alias('g')
   .description('create a model')
   .action(function () {
-  // TODO
+    const projectName = path.basename(process.cwd())
     const model = process.argv[3]
     const fieldTypes = process.argv.slice(4, process.argv.length)
     const schema = {}
@@ -45,7 +46,11 @@ program
         console.log(`invalid: ${fieldType} `)
       }
     })
-    console.log(schema)
+    if (fieldTypes.length !== Object.keys(schema).length) throw new Error('ensure format: <field:type>')
+    const genModel = require('./commands/core/models/writeModel')
+    const genRoutes = require('./commands/core/routes/writeRoutes')
+    genModel(model, schema)
+    genRoutes(projectName, model, schema)
   })
 
 program.parse(process.argv)
