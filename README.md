@@ -7,7 +7,8 @@ Using:
 ```shell
 $ npm install -g aircode-node
 $ aircode-node -h
-$ aircode-node new hello todos
+$ aircode-node new hello
+$ aircode-node generate book title:String price:Number
 ```
 
 after new a project, you can use docker or node to start.
@@ -31,10 +32,3 @@ $ npm run dev
 #### Issues
 
 You can report issues in [here](https://github.com/ACOTeam/aircode-node/issues)
-
-#### TODO List
-
-- add command
-	- aircode-node generate model field:type
-	- aircode-node generate route post [get | put | delete]
-- enhance structure

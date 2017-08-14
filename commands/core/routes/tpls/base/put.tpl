@@ -3,8 +3,9 @@ router.put('/{{resource}}s/:_id', validator({
     _id: Joi.objectId().required()
   }),
   body: Joi.object().keys({
-    title: Joi.string().required(),
-    price: Joi.number().required()
+    {% for key in keys %}
+    {{key}}: Joi.{{fields[key].toLowerCase()}}().required(),
+    {%endfor%}
   })
 }), require('./{{resource}}s/put'))
 

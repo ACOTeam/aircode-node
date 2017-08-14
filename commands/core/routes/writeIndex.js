@@ -3,33 +3,55 @@ const nunjucks = require('nunjucks')
 
 const filePath = __dirname
 
-module.exports = (projectName, resource) => {
-  const fileName = `./${projectName}/src/routes/index.js`
-  const resourceDir = `./${projectName}/src/routes/${resource}s`
+module.exports = (projectName, resource, schema, methods) => {
+  const fileName = `${process.cwd()}/src/routes/index.js`
+  const resourceDir = `${process.cwd()}/src/routes/${resource}s`
   const isExistInde = fs.existsSync(fileName)
   const isExistResource = fs.existsSync(resourceDir)
-  if (isExistResource) throw new Error(`resource: ${resource} is exist.`)
-  fs.mkdirSync(resourceDir)
+  if (isExistResource) {
+    throw new Error(`resource: ${resource} is exist.`)
+  } else {
+    fs.mkdirSync(resourceDir)
+  }
   const readFile = isExistInde ? fileName : `${filePath}/tpls/base/index.js.tpl`
   const indexTpl = fs.readFileSync(readFile).toString()
 
-  const getTpl = fs.readFileSync(filePath + '/tpls/base/get.tpl').toString()
-  const listTpl = fs.readFileSync(filePath + '/tpls/base/list.tpl').toString()
-  const postTpl = fs.readFileSync(filePath + '/tpls/base/post.tpl').toString()
-  const putTpl = fs.readFileSync(filePath + '/tpls/base/put.tpl').toString()
-  const deleteTpl = fs.readFileSync(filePath + '/tpls/base/delete.tpl').toString()
-  const graphqlTpl = fs.readFileSync(filePath + '/tpls/base/graphql.tpl').toString()
-
+  let get, post, put, list, del, graphql
   const options = { resource }
 
-  const index = nunjucks.renderString(indexTpl, options)
-  const graphql = nunjucks.renderString(graphqlTpl, options)
-  const get = nunjucks.renderString(getTpl, options)
-  const list = nunjucks.renderString(listTpl, options)
-  const post = nunjucks.renderString(postTpl, options)
-  const put = nunjucks.renderString(putTpl, options)
-  const del = nunjucks.renderString(deleteTpl, options)
+  const index = nunjucks.renderString(indexTpl, { resource })
+
+  methods.forEach((method) => {
+    switch (method) {
+      case 'GET':
+        const getTpl = fs.readFileSync(filePath + '/tpls/base/get.tpl').toString()
+        get = nunjucks.renderString(getTpl, options)
+        break
+      case 'LIST':
+        const listTpl = fs.readFileSync(filePath + '/tpls/base/list.tpl').toString()
+        list = nunjucks.renderString(listTpl, options)
+        break
+      case 'POST':
+        const postOptions = Object.assign({}, options, { fields: schema, keys: Object.keys(schema) })
+        const postTpl = fs.readFileSync(filePath + '/tpls/base/post.tpl').toString()
+        post = nunjucks.renderString(postTpl, postOptions)
+        break
+      case 'PUT':
+        const putOptions = Object.assign({}, options, { fields: schema, keys: Object.keys(schema) })
+        const putTpl = fs.readFileSync(filePath + '/tpls/base/put.tpl').toString()
+        put = nunjucks.renderString(putTpl, putOptions)
+        break
+      case 'DELETE':
+        const deleteTpl = fs.readFileSync(filePath + '/tpls/base/delete.tpl').toString()
+        del = nunjucks.renderString(deleteTpl, options)
+        break
+      case 'GRAPHQL':
+        const graphqlTpl = fs.readFileSync(filePath + '/tpls/base/graphql.tpl').toString()
+        graphql = nunjucks.renderString(graphqlTpl, options)
+        break
+    }
+  })
 
   const combineTpl = index + graphql + get + list + post + put + del
-  fs.writeFileSync(`./${projectName}/src/routes/index.js`, combineTpl)
+  fs.writeFileSync(`${process.cwd()}/src/routes/index.js`, combineTpl)
 }
