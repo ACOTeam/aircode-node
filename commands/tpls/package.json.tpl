@@ -10,7 +10,8 @@
     "dev": "NODE_ENV=development nodemon --inspect src/server.js",
     "test": "NODE_ENV=test node_modules/mocha/bin/mocha $(find ./test -name *.test.js)",
     "cov": "nyc -r html npm test && open ./coverage/index.html",
-    "standard": "node_modules/.bin/standard"
+    "standard": "node_modules/.bin/standard --fix",
+    "airapi": "./node_modules/.bin/airapi-cli build -i ./src/models -i ./src/routes"
   },
   "pre-commit": [
     "standard",
@@ -22,6 +23,7 @@
   "author": "airapi",
   "license": "ISC",
   "dependencies": {
+    "airapi-cli": "^2.4.1",
     "any-promise": "^1.3.0",
     "config": "^1.26.1",
     "graphql": "^0.10.5",

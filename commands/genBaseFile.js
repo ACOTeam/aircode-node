@@ -72,6 +72,22 @@ function writeReadme () {
   fs.writeFileSync(`./${projectName}/README.md`, readme)
 }
 
+function writeAirapi () {
+  const projectName = process.env.projectName
+  const airapiTpl = fs.readFileSync(filePath + '/tpls/airapi.json.tpl').toString()
+  const options = { projectName }
+  const airapi = nunjucks.renderString(airapiTpl, options)
+  fs.writeFileSync(`./${projectName}/.airapi.json`, airapi)
+}
+
+function writeGitigonre () {
+  const projectName = process.env.projectName
+  const gitigonreTpl = fs.readFileSync(filePath + '/tpls/gitigonre.tpl').toString()
+  const options = { projectName }
+  const gitigonre = nunjucks.renderString(gitigonreTpl, options)
+  fs.writeFileSync(`./${projectName}/.gitigonre`, gitigonre)
+}
+
 function writer (projectName) {
   process.env.projectName = projectName
   writeFileByEnv()
@@ -80,6 +96,8 @@ function writer (projectName) {
   writeMakefile()
   writePm2()
   writeReadme()
+  writeAirapi()
+  writeGitigonre()
 }
 
 module.exports = writer
