@@ -1,5 +1,6 @@
 const fs = require('fs')
 const nunjucks = require('nunjucks')
+const toCamelCase = require('../../../utils/toCamelCase')
 
 const filePath = __dirname
 
@@ -17,7 +18,7 @@ module.exports = (projectName, resource, schema, methods) => {
   const indexTpl = fs.readFileSync(readFile).toString()
 
   let get, post, put, list, del, graphql
-  const options = { resource }
+  const options = { resource: toCamelCase(resource) }
 
   const index = nunjucks.renderString(indexTpl, { resource })
 
