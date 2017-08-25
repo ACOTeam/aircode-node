@@ -11,7 +11,7 @@ function createProject (projectName) {
 function mkDir (projectDir) {
   const baseDirs = ['config', 'src', 'deploy', 'test']
   const subDirs = ['src/graphql', 'src/graphql/models', 'src/lib', 'src/middlewares', 'src/models', 'src/routes', 'src/services', 'src/runtime',
-    'test/graphql', 'test/lib', 'test/middlewares', 'test/models', 'test/routes', 'test/services']
+    'deploy/scripts', 'test/graphql', 'test/lib', 'test/middlewares', 'test/models', 'test/routes', 'test/services']
   const dirs = [...baseDirs, ...subDirs]
   dirs.forEach((dir) => {
     const dirPath = projectDir + '/' + dir

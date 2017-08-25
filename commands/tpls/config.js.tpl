@@ -3,7 +3,7 @@ module.exports = {
     port: {{appPort}}
   },
   mongo: {
-    host: '{{mongoHost}}',
+    host: 'airapi-mongo-{{env}}',
     port: {{mongoPort}},
     user: '',
     pass: '',

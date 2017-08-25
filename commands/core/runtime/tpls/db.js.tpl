@@ -12,7 +12,7 @@ const dbConnection = mongoose.createConnection(connectionStr, { user: config.mon
 
 mongoose.connection.on('error', (err) => logger.error('mongodb connection error:' + err))
 
-const modelsPath = path.join(process.cwd(), '/src/models')
+const modelsPath = path.join(__dirname, '../models')
 const models = fs.readdirSync(modelsPath)
 const db = {}
 for (let model of models) {
