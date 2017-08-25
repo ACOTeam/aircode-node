@@ -4,16 +4,24 @@ const fs = require('fs')
 const nunjucks = require('nunjucks')
 const filePath = __dirname
 
-const envs = ['test', 'production', 'development', 'qa']
+const envs = ['test', 'production', 'development']
 
 function writeFileByEnv () {
   const configTpl = fs.readFileSync(filePath + '/tpls/config.js.tpl').toString()
-  const dockerfileTpl = fs.readFileSync(filePath + '/tpls/dockerfile.tpl').toString()
   for (let i = 0; i < envs.length; i++) {
     const env = envs[i]
+    const dockerfileTpl = fs.readFileSync(filePath + `/tpls/dockerfiles/dockerfile.${env}.tpl`).toString()
+    const runScriptTpl = fs.readFileSync(filePath + `/tpls/scripts/run-${env}.sh.tpl`).toString()
     writeDockerfile(env, dockerfileTpl)
     writeConfig(env, configTpl)
+    writeScript(env, runScriptTpl)
   }
+}
+
+function writeScript (env, template) {
+  const options = {}
+  const runScript = nunjucks.renderString(template, options)
+  fs.writeFileSync(`./${process.env.projectName}/deploy/scripts/run-${env}.sh`, runScript)
 }
 
 function writeConfig (env, template) {
@@ -32,6 +40,23 @@ function writeDockerfile (env, template) {
   const options = {}
   const dockerfile = nunjucks.renderString(template, options)
   fs.writeFileSync(`./${process.env.projectName}/deploy/Dockerfile.${env}`, dockerfile)
+}
+
+function writeBaseDockerfile () {
+  const dockerfileBaseTpl = fs.readFileSync(filePath + '/tpls/dockerfiles/dockerfile.base.tpl').toString()
+  const options = {}
+  const dockerfileBase = nunjucks.renderString(dockerfileBaseTpl, options)
+  fs.writeFileSync(`./${process.env.projectName}/deploy/Dockerfile.base`, dockerfileBase)
+}
+
+function writeBaseScripts () {
+  const buildBaseScriptTpl = fs.readFileSync(filePath + '/tpls/scripts/build-base.sh.tpl').toString()
+  const runMongoScriptTpl = fs.readFileSync(filePath + '/tpls/scripts/run-mongo.sh.tpl').toString()
+  const options = {}
+  const buildBaseScript = nunjucks.renderString(buildBaseScriptTpl, options)
+  const runMongoScript = nunjucks.renderString(runMongoScriptTpl, options)
+  fs.writeFileSync(`./${process.env.projectName}/deploy/scripts/build-base.sh`, buildBaseScript)
+  fs.writeFileSync(`./${process.env.projectName}/deploy/scripts/run-mongo.sh`, runMongoScript)
 }
 
 function writeServer () {
@@ -91,6 +116,8 @@ function writeGitigonre () {
 function writer (projectName) {
   process.env.projectName = projectName
   writeFileByEnv()
+  writeBaseDockerfile()
+  writeBaseScripts()
   writeServer()
   writePackage()
   writeMakefile()
