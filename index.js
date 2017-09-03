@@ -49,8 +49,10 @@ program
     if (fieldTypes.length !== Object.keys(schema).length) throw new Error('ensure format: <field:type>')
     const genModel = require('./commands/core/models/writeModel')
     const genRoutes = require('./commands/core/routes/writeRoutes')
+    const genGraphqlModel = require('./commands/core/graphql/models/writeGraphqlModel')
     genModel(model, schema)
     genRoutes(projectName, model, schema)
+    genGraphqlModel(model, schema)
   })
 
 program.parse(process.argv)

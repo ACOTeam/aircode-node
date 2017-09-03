@@ -1,6 +1,6 @@
 /**
   @api {get} /{{resource.toLowerCase()}}s
-  @apiName Get{{resource}}s
+  @apiName List{{resource}}s
   @apiVersion 0.1.0
   @apiGroup {{resource}}
   @apiPermission public

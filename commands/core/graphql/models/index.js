@@ -1,3 +1,3 @@
 module.exports = {
-  writeBook: require('./writeBook')
+  writeGraphqlModel: require('./writeGraphqlModel')
 }
