@@ -1,9 +1,11 @@
 const fs = require('fs')
 const nunjucks = require('nunjucks')
+const toCamelCase = require('../../../utils/toCamelCase')
 
-module.exports = (projectName) => {
+module.exports = (resource) => {
   const queryTpl = fs.readFileSync(__dirname + '/tpls/query.js.tpl').toString()
-  const options = {}
+  const initialModel = toCamelCase(resource)
+  const options = { resource: initialModel }
   const query = nunjucks.renderString(queryTpl, options)
-  fs.writeFileSync(`./${projectName}/src/graphql/query.js`, query)
+  fs.writeFileSync(`${process.cwd()}/src/graphql/query.js`, query)
 }

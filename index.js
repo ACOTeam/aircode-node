@@ -50,9 +50,11 @@ program
     const genModel = require('./commands/core/models/writeModel')
     const genRoutes = require('./commands/core/routes/writeRoutes')
     const genGraphqlModel = require('./commands/core/graphql/models/writeGraphqlModel')
+    const genGraphqlQuery = require('./commands/core/graphql/writeQuery')
     genModel(model, schema)
     genRoutes(projectName, model, schema)
     genGraphqlModel(model, schema)
+    genGraphqlQuery(model)
   })
 
 program.parse(process.argv)
