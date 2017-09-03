@@ -13,7 +13,7 @@ module.exports = (projectName, resource) => {
   genRuntime.writeDb(projectName, resource)
   genRuntime.writeLog(projectName, resource)
   genGraphql.writeMutation(projectName)
-  genGraphql.writeQuery(projectName)
   genGraphql.writeSchema(projectName)
-  genGraphql.writeModels.writeBook(projectName)
+  // genGraphql.writeQuery(projectName)
+  // genGraphql.writeModels.writeBook(projectName)
 }

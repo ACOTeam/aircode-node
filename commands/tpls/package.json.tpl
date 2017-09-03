@@ -23,7 +23,7 @@
   "author": "airapi",
   "license": "ISC",
   "dependencies": {
-    "airapi-cli": "^2.4.1",
+    "airapi-cli": "^2.4.3",
     "any-promise": "^1.3.0",
     "config": "^1.26.1",
     "graphql": "^0.10.5",

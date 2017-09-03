@@ -3,7 +3,7 @@ const timestamps = require('mongoose-timestamp')
 
 /* @apiModel {{resource}}
 {
-	{% for key in keys %}
+	{% for key in keys -%}
 	{{key}}: {{fields[key]}},
 	{% endfor %}
 	isDeleted : boolean
@@ -11,7 +11,7 @@ const timestamps = require('mongoose-timestamp')
 */
 
 const schema = new mongoose.Schema({
-	{% for key in keys %}
+	{% for key in keys -%}
 	{{key}}: {{fields[key]}},
 	{% endfor %}
 	isDeleted: { type: Boolean, default: false }

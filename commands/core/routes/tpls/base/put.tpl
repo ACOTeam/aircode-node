@@ -8,9 +8,9 @@
       update entity by id
   @apiBody
   {
-    {% for key in keys %}
+    {% for key in keys -%}
     {{key}}?: {{fields[key].toLowerCase()}}
-    {%endfor%}
+    {%endfor-%}
   }
 */
 router.put('/{{resource.toLowerCase()}}s/:_id', validator({
@@ -18,9 +18,9 @@ router.put('/{{resource.toLowerCase()}}s/:_id', validator({
     _id: Joi.objectId().required()
   }),
   body: Joi.object().keys({
-    {% for key in keys %}
+    {% for key in keys -%}
     {{key}}: Joi.{{fields[key].toLowerCase()}}().required(),
-    {%endfor%}
+    {%endfor-%}
   })
 }), require('./{{resource.toLowerCase()}}s/put'))
 
