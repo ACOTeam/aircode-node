@@ -2,40 +2,37 @@ const Graphql = require('graphql')
 const db = require('../runtime/db')
 const argsBuilder = require('../lib/argsBuilder')
 const queryBuilder = require('../lib/queryBuilder')
-const Books = require('./models/Book')
+const {{resource}}s = require('./models/{{resource}}')
 
 module.exports = new Graphql.GraphQLObjectType({
   name: 'ROOT',
   description: 'Search by graphql',
   fields: {
-    books: {
+    {{resource.toLowerCase()}}s: {
       type: new Graphql.GraphQLNonNull(new Graphql.GraphQLObjectType({
-        name: 'BookType',
+        name: '{{resource}}Type',
         fields: {
           counts: {
             type: Graphql.GraphQLInt
           },
           rows: {
-            type: new Graphql.GraphQLList(Books)
+            type: new Graphql.GraphQLList({{resource}}s)
           }
         }
       })),
       args: argsBuilder({
-        title: {
+        _id: {
           type: Graphql.GraphQLString
-        },
-        price: {
-          type: Graphql.GraphQLInt
         }
       }),
       resolve: (_, args) => {
         return new Promise(async(resolve, reject) => {
-          const query = db.Book.find()
+          const query = db.{{resource}}.find()
           queryBuilder(query, args)
-          const books = await query.lean().exec()
+          const results = await query.lean().exec()
           resolve({
-            rows: books,
-            counts: books.length
+            rows: results,
+            counts: results.length
           })
         })
       }
