@@ -7,14 +7,14 @@ const filePath = __dirname
 module.exports = (projectName, resource, schema, methods) => {
   const fileName = `${process.cwd()}/src/routes/index.js`
   const resourceDir = `${process.cwd()}/src/routes/${resource}s`
-  const isExistInde = fs.existsSync(fileName)
+  const isExistIndex = fs.existsSync(fileName)
   const isExistResource = fs.existsSync(resourceDir)
   if (isExistResource) {
     throw new Error(`resource: ${resource} is exist.`)
   } else {
     fs.mkdirSync(resourceDir)
   }
-  const readFile = isExistInde ? fileName : `${filePath}/tpls/base/index.js.tpl`
+  const readFile = isExistIndex ? fileName : `${filePath}/tpls/base/index.js.tpl`
   const indexTpl = fs.readFileSync(readFile).toString()
 
   let get, post, put, list, del, graphql
@@ -46,10 +46,10 @@ module.exports = (projectName, resource, schema, methods) => {
         const deleteTpl = fs.readFileSync(filePath + '/tpls/base/delete.tpl').toString()
         del = nunjucks.renderString(deleteTpl, options)
         break
-      case 'GRAPHQL':
-        const graphqlTpl = fs.readFileSync(filePath + '/tpls/base/graphql.tpl').toString()
-        graphql = nunjucks.renderString(graphqlTpl, options)
-        break
+      // case 'GRAPHQL':
+      //   const graphqlTpl = fs.readFileSync(filePath + '/tpls/base/graphql.tpl').toString()
+      //   graphql = nunjucks.renderString(graphqlTpl, options)
+      //   break
     }
   })
 

@@ -1,12 +1,3 @@
-const Graphql = require('graphql')
-const db = require('../runtime/db')
-const argsBuilder = require('../lib/argsBuilder')
-const queryBuilder = require('../lib/queryBuilder')
-
-module.exports = new Graphql.GraphQLObjectType({
-  name: 'ROOT',
-  description: 'Search by graphql',
-  fields: {
     {{resource.toLowerCase()}}: {
       type: new Graphql.GraphQLNonNull(new Graphql.GraphQLObjectType({
         name: '{{resource}}Type',
