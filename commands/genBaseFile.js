@@ -110,7 +110,7 @@ function writeGitigonre () {
   const gitigonreTpl = fs.readFileSync(filePath + '/tpls/gitigonre.tpl').toString()
   const options = { projectName }
   const gitigonre = nunjucks.renderString(gitigonreTpl, options)
-  fs.writeFileSync(`./${projectName}/.gitigonre`, gitigonre)
+  fs.writeFileSync(`./${projectName}/.gitignore`, gitigonre)
 }
 
 function writer (projectName) {
