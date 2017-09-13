@@ -27,11 +27,12 @@
     "any-promise": "^1.3.0",
     "config": "^1.26.1",
     "graphql": "^0.10.5",
-    "graphql-server-koa": "^1.0.4",
     "graphql-tools": "^1.1.0",
     "joi": "^10.6.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^3.2.0",
+    "koa-graphql": "^0.7.1",
+    "koa-mount": "^3.0.0",
     "koa-router": "^7.2.1",
     "log4js": "^2.2.0",
     "mongoose": "^4.11.3",
@@ -40,6 +41,8 @@
     "yallist": "^3.0.2"
   },
   "devDependencies": {
+    "airapi-cli": "^2.4.3",
+    "airapi-web": "^2.1.0",
     "mocha": "^3.5.0",
     "nodemon": "^1.11.0",
     "nyc": "^11.0.3",

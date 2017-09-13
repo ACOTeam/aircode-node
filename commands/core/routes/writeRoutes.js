@@ -1,11 +1,10 @@
-const defaultMethods = ['GET', 'POST', 'LIST', 'PUT', 'DELETE', 'GRAPHQL']
+const defaultMethods = ['GET', 'POST', 'LIST', 'PUT', 'DELETE']
 const writeIndex = require('./writeIndex')
 const writeGet = require('./writeGet')
 const writePost = require('./writePost')
 const writeList = require('./writeList')
 const writePut = require('./writePut')
 const writeDelete = require('./writeDel')
-// const writeGraphql = require('./writeGraphql')
 
 module.exports = (projectName, resource, schema, methods = defaultMethods) => {
   writeIndex(projectName, resource, schema, methods)
@@ -25,9 +24,6 @@ module.exports = (projectName, resource, schema, methods = defaultMethods) => {
         break
       case 'DELETE':
         writeDelete(projectName, resource)
-        break
-      case 'GRAPHQL':
-        // writeGraphql(projectName, resource)
         break
     }
   })
