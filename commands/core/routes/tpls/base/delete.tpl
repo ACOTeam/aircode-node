@@ -5,7 +5,7 @@
   @apiGroup {{resource}}
   @apiPermission public
   @apiDescription
-      update entity by id
+    update entity by id
 */
 router.delete('/{{resource}}s/:_id', validator({
   params: Joi.object().keys({
