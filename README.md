@@ -1,41 +1,54 @@
-## Airapi scaffold
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-----
+# Airapi scaffold
+> A node.js scaffold
 
-Using:
+Generate node.js web api framework, integrate with Docker and MongoDB.
 
+
+## Installing
+Install by npm
 ```shell
 $ npm install -g aircode-node
+```
+
+Install by yarn
+```shell
+$ yarn add -g aircode-node
+```
+
+## Using
+
+List command
+```shell
 $ aircode-node -h
-$ aircode-node new hello todos
 ```
 
-after new a project, you can use docker or node to start.
-
-Running:
-
-- Docker
+Create a new project
 ```shell
-$ cd hello
-$ make build
-$ make run
+$ aircode-node new <projectName>
 ```
 
-- Node monitor
+Generate model / routes
 ```shell
-$ cd hello
-$ npm i
-$ nodemon src/server.js
+$ cd <projectName>
+$ aircode-node generate <modelName> <fieldName>:<data type(mongo support)>
 ```
 
-#### Issues
+Run with Docker
+```shell
+$ make up
+```
+
+Run in local
+```shell
+$ npm install
+$ npm run dev
+```
+
+## Database
+- MongoDB
+
+## Issues
 
 You can report issues in [here](https://github.com/ACOTeam/aircode-node/issues)
-
-#### TODO List
-
-- add command
-	- aircode-node generate model field:type
-	- aircode-node generate route post [get | put | delete]
-- refactor generateFile.js
-- enhance structure

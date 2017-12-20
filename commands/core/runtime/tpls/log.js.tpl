@@ -13,7 +13,7 @@ log4js.configure(config.get('log'))
 module.exports = {
   get: name => {
     const logger = log4js.getLogger(name)
-    logger.level = process.env.NODE_ENV === 'development'? 'TRACE' : 'INFO'
+    logger.level = process.env.NODE_ENV === 'development' ? 'TRACE' : 'INFO'
     return logger
   }
 }

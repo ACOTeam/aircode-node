@@ -1,6 +1,19 @@
-router.get('/{{resource}}/:id', Validate({
+/**
+  @api {get} /{{resource.toLowerCase()}}s/:_id
+  @apiName Get{{resource}}s
+  @apiVersion 0.1.0
+  @apiGroup {{resource}}
+  @apiPermission public
+  @apiDescription
+    get entity detail
+  @apiParams
+  {
+    _id : string
+  }
+*/
+router.get('/{{resource.toLowerCase()}}s/:_id', validator({
   params: Joi.object().keys({
-    id: Joi.number().required()
+    _id: Joi.objectId().required()
   })
-}), require('./{{resource}}/get'))
+}), require('./{{resource.toLowerCase()}}s/get'))
 

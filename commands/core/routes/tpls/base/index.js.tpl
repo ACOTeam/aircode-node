@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const Joi = require('joi')
-const Validate = require('../middlewares/validate')
+const validator = require('../lib/validator')
+Joi.objectId = () => Joi.string().hex().length(24)
 
 module.exports = router
 
