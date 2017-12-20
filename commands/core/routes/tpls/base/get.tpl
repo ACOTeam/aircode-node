@@ -5,10 +5,10 @@
   @apiGroup {{resource}}
   @apiPermission public
   @apiDescription
-      get entity detail
+    get entity detail
   @apiParams
   {
-     _id : string
+    _id : string
   }
 */
 router.get('/{{resource.toLowerCase()}}s/:_id', validator({
